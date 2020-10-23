@@ -3,18 +3,21 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import { Container } from 'react-bootstrap';
 import Home from './Screens/Home';
+import ProductScreen from './Screens/ProductScreen';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const App = () => {
     return (
-        <>
+        <Router>
             <Header />
             <main className="py-3">
                 <Container>
-                    <Home />
+                    <Route path="/" component={Home} exact />
+                    <Route path="/product/:id" component={ProductScreen} />
                 </Container>
             </main>
             <Footer />
-        </>
+        </Router>
     );
 };
 
