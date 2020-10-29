@@ -29,8 +29,6 @@ const ProductScreen = ({ history, match }) => {
         history.push(`/cart/${match.params.id}?qty=${qty}`);
     };
 
-    console.log(`Rating: ${product.rating}`);
-
     return (
         <>
             <Link className="btn btn-light my-3" to="/">
