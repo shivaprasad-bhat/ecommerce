@@ -15,7 +15,7 @@ const LoginScreen = ({ location, history }) => {
 
     const dispatch = useDispatch();
     const userLogin = useSelector((state) => state.userLogin);
-    console.log(userLogin);
+
     const { loading, error, userInfo } = userLogin;
 
     useEffect(() => {
