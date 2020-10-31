@@ -60,7 +60,7 @@ const getOrderById = asyncHandler(async (req, res) => {
 
 /**
  * @description: Update order to paid
- * @route: GET /api/orders/:id/pay
+ * @route: PUT /api/orders/:id/pay
  * @access: Private
  */
 
@@ -76,7 +76,9 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
             update_time: req.body.update_time,
             email_address: req.body.payer.email_address,
         };
+
         const updatedOrder = await order.save();
+
         res.json(updatedOrder);
     } else {
         res.status(404);
