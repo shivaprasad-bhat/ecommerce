@@ -19,7 +19,7 @@ const Header = () => {
                 <Navbar bg="dark" variant="dark" expand="lg">
                     <Container>
                         <LinkContainer to="/">
-                            <Navbar.Brand>Atmanirbhar SuperMart</Navbar.Brand>
+                            <Navbar.Brand>shoponline</Navbar.Brand>
                         </LinkContainer>
 
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -54,6 +54,25 @@ const Header = () => {
                                             Login
                                         </Nav.Link>
                                     </LinkContainer>
+                                )}
+                                {userInfo && userInfo.isAdmin && (
+                                    <NavDropdown title="Manage" id="adminMenu">
+                                        <LinkContainer to="/admin/userslist">
+                                            <NavDropdown.Item>
+                                                Users
+                                            </NavDropdown.Item>
+                                        </LinkContainer>
+                                        <LinkContainer to="/admin/productlist">
+                                            <NavDropdown.Item>
+                                                Product
+                                            </NavDropdown.Item>
+                                        </LinkContainer>
+                                        <LinkContainer to="/admin/orderlist">
+                                            <NavDropdown.Item>
+                                                Orders
+                                            </NavDropdown.Item>
+                                        </LinkContainer>
+                                    </NavDropdown>
                                 )}
                             </Nav>
                         </Navbar.Collapse>

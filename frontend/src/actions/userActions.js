@@ -13,6 +13,10 @@ import {
     USER_UPDATE_PROFILE_REQUEST,
     USER_UPDATE_PROFILE_SUCCESS,
     USER_DETAILS_RESET,
+    USER_LIST_REQUEST,
+    USER_LIST_SUCCESS,
+    USER_LIST_FAIL,
+    USER_LIST_RESET,
 } from '../constants/userConstants';
 import { ORDER_MY_LIST_RESET } from '../constants/orderConstants';
 import axios from 'axios';
@@ -61,6 +65,9 @@ export const logout = () => async (dispatch) => {
     });
     dispatch({
         type: ORDER_MY_LIST_RESET,
+    });
+    dispatch({
+        type: USER_LIST_RESET,
     });
 };
 
@@ -163,6 +170,39 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: USER_UPDATE_PROFILE_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+};
+
+export const listUsers = () => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: USER_LIST_REQUEST,
+        });
+
+        const {
+            userLogin: { userInfo },
+        } = getState();
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        };
+
+        const { data } = await axios.get(`/api/users`, config);
+
+        dispatch({
+            type: USER_LIST_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: USER_LIST_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message
