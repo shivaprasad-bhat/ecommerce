@@ -88,12 +88,11 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 
 /**
  * @description: Get logged in users orders
- * @route: GET /api/orders/mo
+ * @route: GET /api/orders/myorders
  * @access: Private
  */
 
 const getMyOrders = asyncHandler(async (req, res) => {
-    console.log(`User id: ${req.user._id}`);
     const orders = await Order.find({ user: req.user._id });
     res.json(orders);
 });
