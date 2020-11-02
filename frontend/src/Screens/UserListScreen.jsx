@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button } from 'react-bootstrap';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { listUsers } from '../actions/userActions';
+import { listUsers, deleteUser } from '../actions/userActions';
 
 const UserListScreen = ({ history }) => {
     const dispatch = useDispatch();
@@ -15,16 +15,21 @@ const UserListScreen = ({ history }) => {
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
+    const userDelete = useSelector((state) => state.userDelete);
+    const { success: deleteSuccess } = userDelete;
+
     useEffect(() => {
         if (userInfo && userInfo.isAdmin) {
             dispatch(listUsers());
         } else {
             history.push('/login');
         }
-    }, [dispatch, history]);
+    }, [dispatch, history, deleteSuccess, userInfo]);
 
     const deleteHandler = (id) => {
-        console.log(`Delete`);
+        if (window.confirm('Are you sure to delete user?')) {
+            dispatch(deleteUser(id));
+        }
     };
 
     return (
@@ -38,6 +43,7 @@ const UserListScreen = ({ history }) => {
                 <Table striped bordered hover responsive className="table-sm">
                     <thead>
                         <tr>
+                            <th>Id</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Admin</th>
@@ -47,6 +53,7 @@ const UserListScreen = ({ history }) => {
                     <tbody>
                         {users.map((user) => (
                             <tr key={user._id}>
+                                <td>{user._id}</td>
                                 <td>{user.name}</td>
                                 <td>
                                     <a href={`mailto:${user.email}`}>
@@ -68,7 +75,7 @@ const UserListScreen = ({ history }) => {
                                 </td>
                                 <td>
                                     <LinkContainer
-                                        to={`/user/${user._id}/edit`}
+                                        to={`/admin/useredit/${user._id}`}
                                     >
                                         <Button
                                             variant="light"
