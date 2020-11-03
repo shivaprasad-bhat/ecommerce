@@ -139,7 +139,7 @@ const deleteUser = asyncHandler(async (req, res) => {
  * @access Private/Admin
  */
 const getUserById = asyncHandler(async (req, res) => {
-    const user = await Users.findById(req.user.id).select('-password');
+    const user = await Users.findById(req.params.id).select('-password');
     if (user) {
         res.json(user);
     } else {
