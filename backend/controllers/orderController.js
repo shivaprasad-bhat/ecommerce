@@ -121,6 +121,8 @@ const updateOrderToDelivered = asyncHandler(async (req, res) => {
         order.isDelivered = true;
         order.deliveredAt = Date.now();
 
+        console.log(order);
+
         const updatedOrder = await order.save();
 
         res.json(updatedOrder);

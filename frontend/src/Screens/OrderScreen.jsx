@@ -20,7 +20,7 @@ const addDecimals = (number) => {
     return (Math.round(number * 100) / 100).toFixed(2);
 };
 
-const OrderScreen = ({ match }) => {
+const OrderScreen = ({ match, history }) => {
     const [sdkReady, setSdkReady] = useState(false);
 
     const dispatch = useDispatch();
@@ -48,6 +48,10 @@ const OrderScreen = ({ match }) => {
     }
 
     useEffect(() => {
+        if (!userInfo) {
+            history.push('/login');
+        }
+
         const addPaypalScript = async () => {
             const { data: clientId } = await axios.get('/api/config/paypal');
             const script = document.createElement('script');
@@ -74,7 +78,15 @@ const OrderScreen = ({ match }) => {
                 setSdkReady(true);
             }
         }
-    }, [dispatch, orderId, successPay, successDeliver, order]);
+    }, [
+        dispatch,
+        orderId,
+        userInfo,
+        successPay,
+        successDeliver,
+        order,
+        history,
+    ]);
 
     const successPaymentHandler = (paymentResult) => {
         dispatch(payOrder(orderId, paymentResult));
@@ -117,7 +129,7 @@ const OrderScreen = ({ match }) => {
                             {order.isDelivered ? (
                                 <Message variant="success">
                                     Delivered at{' '}
-                                    {order.updatedAt.substring(0, 10)}
+                                    {order.deliveredAt.substring(0, 10)}
                                 </Message>
                             ) : (
                                 <Message variant="danger">
@@ -237,7 +249,8 @@ const OrderScreen = ({ match }) => {
                                 </ListGroup.Item>
                             )}
                             {loadingDeliver && <Loader />}
-                            {userInfo.isAdmin &&
+                            {userInfo &&
+                                userInfo.isAdmin &&
                                 order.isPaid &&
                                 !order.isDelivered && (
                                     <ListGroup.Item>
