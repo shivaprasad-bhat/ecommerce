@@ -47,10 +47,10 @@ const PaymentScreen = ({ history }) => {
                             ></Form.Check>
                             <Form.Check
                                 type="radio"
-                                label="Rajor Pay"
+                                label="Razor Pay"
                                 id="razorpay"
                                 name="payment-method"
-                                value="Razon Pay"
+                                value="Razor Pay"
                                 disabled
                                 onChange={(e) =>
                                     setPaymentMethod(e.target.value)
