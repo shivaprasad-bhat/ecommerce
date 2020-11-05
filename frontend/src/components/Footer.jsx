@@ -8,7 +8,9 @@ const Footer = () => {
                 <Row>
                     <Col className="text-center py-3">
                         Copyright &copy; eCommerce. Designed and Developed By{' '}
-                        <a href="https://shivaprasad.tech">Shivaprasad Bhat</a>
+                        <a href="https://shivaprasad.tech" target="_blank">
+                            Shivaprasad Bhat
+                        </a>
                     </Col>
                 </Row>
             </Container>
