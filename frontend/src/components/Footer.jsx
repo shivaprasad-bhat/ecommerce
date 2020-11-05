@@ -7,7 +7,8 @@ const Footer = () => {
             <Container>
                 <Row>
                     <Col className="text-center py-3">
-                        Copyright &copy; eCommerce. Designed and Developed By{' '}
+                        Copyright &copy; shoponlineapp.com <br /> Designed and
+                        Developed By{' '}
                         <a href="https://shivaprasad.tech" target="_blank">
                             Shivaprasad Bhat
                         </a>
