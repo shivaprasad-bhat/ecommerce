@@ -11,6 +11,7 @@ import {
     createProduct,
 } from '../actions/productActions';
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
+import Meta from '../components/Meta';
 
 const ProductListScreen = ({ history, match }) => {
     const dispatch = useDispatch();
@@ -72,6 +73,7 @@ const ProductListScreen = ({ history, match }) => {
 
     return (
         <>
+            <Meta title="ShopOnline | List Products" />
             <Row className="align-items-center">
                 <Col>
                     <h1>Products</h1>

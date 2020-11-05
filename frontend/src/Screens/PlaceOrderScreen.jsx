@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import CheckoutSteps from '../components/CheckoutSteps';
 import Message from '../components/Message';
 import { createOrder } from '../actions/orderActions';
+import Meta from '../components/Meta';
 
 const addDecimals = (number) => {
     return (Math.round(number * 100) / 100).toFixed(2);
@@ -57,6 +58,8 @@ const PlaceOrderScreen = ({ history }) => {
 
     return (
         <>
+            <Meta title="ShopOnline | Place Order" />
+
             <CheckoutSteps step1 step2 step3 step4 />
             <Row>
                 <Col md={8}>

@@ -4,6 +4,7 @@ import { Form, Button } from 'react-bootstrap';
 import FormContainer from '../components/FormContainer';
 import { saveShippingAddress } from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
+import Meta from '../components/Meta';
 
 const ShippingScreen = ({ history }) => {
     // const cart = useSelector((state) => state.cart);
@@ -22,55 +23,58 @@ const ShippingScreen = ({ history }) => {
         history.push('/payment');
     };
     return (
-        <FormContainer>
-            <CheckoutSteps step1 step2 />
-            <h1>Shipping</h1>
-            <Form onSubmit={submitHandler}>
-                <Form.Group controlId="address">
-                    <Form.Label>Address</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Enter Address"
-                        value={address}
-                        required
-                        onChange={(e) => setAddress(e.target.value)}
-                    ></Form.Control>
-                </Form.Group>
-                <Form.Group controlId="city">
-                    <Form.Label>City</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Enter City"
-                        value={city}
-                        required
-                        onChange={(e) => setCity(e.target.value)}
-                    ></Form.Control>
-                </Form.Group>
-                <Form.Group controlId="postalCode">
-                    <Form.Label>PostalCode</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Enter PostalCode"
-                        value={postalCode}
-                        required
-                        onChange={(e) => setPostalCode(e.target.value)}
-                    ></Form.Control>
-                </Form.Group>
-                <Form.Group controlId="country">
-                    <Form.Label>Country</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Enter Country"
-                        value={country}
-                        required
-                        onChange={(e) => setCountry(e.target.value)}
-                    ></Form.Control>
-                </Form.Group>
-                <Button type="submit" variant="primary">
-                    Continue
-                </Button>
-            </Form>
-        </FormContainer>
+        <>
+            <Meta title="ShopOnline | Shipping" />
+            <FormContainer>
+                <CheckoutSteps step1 step2 />
+                <h1>Shipping</h1>
+                <Form onSubmit={submitHandler}>
+                    <Form.Group controlId="address">
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter Address"
+                            value={address}
+                            required
+                            onChange={(e) => setAddress(e.target.value)}
+                        ></Form.Control>
+                    </Form.Group>
+                    <Form.Group controlId="city">
+                        <Form.Label>City</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter City"
+                            value={city}
+                            required
+                            onChange={(e) => setCity(e.target.value)}
+                        ></Form.Control>
+                    </Form.Group>
+                    <Form.Group controlId="postalCode">
+                        <Form.Label>PostalCode</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter PostalCode"
+                            value={postalCode}
+                            required
+                            onChange={(e) => setPostalCode(e.target.value)}
+                        ></Form.Control>
+                    </Form.Group>
+                    <Form.Group controlId="country">
+                        <Form.Label>Country</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter Country"
+                            value={country}
+                            required
+                            onChange={(e) => setCountry(e.target.value)}
+                        ></Form.Control>
+                    </Form.Group>
+                    <Button type="submit" variant="primary">
+                        Continue
+                    </Button>
+                </Form>
+            </FormContainer>
+        </>
     );
 };
 

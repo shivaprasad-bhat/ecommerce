@@ -6,6 +6,7 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
 import { listMyOrders } from '../actions/orderActions';
+import Meta from '../components/Meta';
 
 const ProfileScreen = ({ history }) => {
     const [email, setEmail] = useState('');
@@ -56,6 +57,7 @@ const ProfileScreen = ({ history }) => {
     };
     return (
         <>
+            <Meta title="ShopOnline | User Profile" />
             <Row>
                 <Col md={3}>
                     <h2>User Profile</h2>

@@ -15,6 +15,7 @@ import {
     ORDER_PAY_RESET,
     ORDER_DELIVER_RESET,
 } from '../constants/orderConstants';
+import Meta from '../components/Meta';
 
 const addDecimals = (number) => {
     return (Math.round(number * 100) / 100).toFixed(2);
@@ -102,6 +103,7 @@ const OrderScreen = ({ match, history }) => {
         <Message variant="danger">{error}</Message>
     ) : (
         <>
+            <Meta title="ShopOnline | Orders" />
             <h1>Order {order._id}</h1>
             <Row>
                 <Col md={8}>

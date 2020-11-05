@@ -5,6 +5,7 @@ import { Table, Button } from 'react-bootstrap';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { listOrders } from '../actions/orderActions';
+import Meta from '../components/Meta';
 
 const OrderListScreen = ({ history }) => {
     const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const OrderListScreen = ({ history }) => {
 
     return (
         <>
+            <Meta title="ShopOnline | Order List" />
             <h1>Orders </h1>
             {loading ? (
                 <Loader />
